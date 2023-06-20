@@ -1,0 +1,6 @@
+<div *ngFor="let website of websites">
+  <h2>{{ website.url }}</h2>
+  <p>Status: {{ website.status }}</p>
+  <p>Response time: {{ website.responseTime }}s</p>
+  <img [src]="'http://localhost:3000/' + website.screen" alt="Screenshot">
+</div>
