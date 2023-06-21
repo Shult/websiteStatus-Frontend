@@ -7,9 +7,6 @@ import { Website } from './website';
   providedIn: 'root'
 })
 export class WebsiteService {
-
-  private apiUrl = 'http://localhost:3000/api/checkStatus';
-
   constructor(private http: HttpClient) { }
 
   checkWebsites(urls: string[]): Observable<Website[]> {
