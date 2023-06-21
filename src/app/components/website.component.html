@@ -1,15 +1,33 @@
-<div class="upload-section">
-  <input type="file" (change)="onFileSelected($event)">
+<div class="upload-section topnav" >
+  <input class="active" type="file" (change)="onFileSelected($event)">
   <button (click)="onSubmit()">Check websites</button>
 </div>
 
-<div class="website-container" *ngFor="let website of websites">
+<!--<div class="website-container up grid-container">-->
+<!--  <div class="website-screenshot">-->
+<!--    <img [src]= "'http://localhost:3000/screenshots/http___twitch.tv.png'" alt="Screenshot">-->
+<!--  </div>-->
+<!--  <div class="website-info grid-container-vertical">-->
+<!--    <h2>twitch.tv</h2>-->
+<!--    <p><strong>Status:</strong> UP</p>-->
+<!--    <p><strong>Response time:</strong> 2s</p>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- <div class="website-container" *ngFor="let website of websites"> -->
+<div *ngFor="let website of websites" class="website-container grid-container" [class.up]="website.status === 'up'" [class.down]="website.status === 'down'">
   <div class="website-screenshot">
     <img [src]="'http://localhost:3000/' + website.screen" alt="Screenshot">
   </div>
-  <div class="website-info">
-    <h2>{{ website.url }}</h2>
-    <p>Status: {{ website.status }}</p>
-    <p>Response time: {{ website.responseTime }}s</p>
+  <div class="grid-container-4">
+    <div class="website-info grid-container-vertical">
+      <p><strong>URL:</strong> {{ website.url }}</p>
+      <p><strong>Response time:</strong> {{ website.responseTime }}s</p>
+      <p><strong>ID:</strong> {{ website.id }}</p>
+      <p><strong>SSL added:</strong> {{ website.addssl }}</p>
+    </div>
+    <div class="container">
+      <p class="centered-text"><strong>Status:</strong> {{ website.status }}</p>
+    </div>
   </div>
 </div>
