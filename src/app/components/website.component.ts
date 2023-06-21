@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WebsiteService } from '../services/website.service'; // Remplacez par le chemin d'accès à votre service
+import { WebsiteService } from '../services/website.service';
 
 @Component({
   selector: 'app-website',
@@ -7,16 +7,48 @@ import { WebsiteService } from '../services/website.service'; // Remplacez par l
   styleUrls: ['./website.component.css']
 })
 export class WebsiteComponent implements OnInit {
-
   websites: any[] = []; // Un tableau pour stocker les sites web
+
+  fileToUpload: File | null = null;
 
   constructor(private websiteService: WebsiteService) { }
 
   ngOnInit(): void {
-    this.websiteService.getWebsites().subscribe((data: any[]) => {
-      this.websites = data;
-      console.log(data);
-    });
+  }
+
+  onFileSelected(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if( target.files ) {
+      this.fileToUpload = target.files[0];
+    } else {
+      console.log("Error: onFileSelected null")
+    }
+  }
+
+  async onSubmit() {
+    const fileReader = new FileReader();
+    if (this.fileToUpload) {
+      fileReader.readAsText(this.fileToUpload, "UTF-8");
+      fileReader.onload = async () => {
+        //console.log(fileReader.result);
+        if(fileReader.result){
+          const urls = (fileReader.result as string).split('\n');
+          this.websiteService.checkWebsites(urls).subscribe(
+            websites => {
+              this.websites = websites;
+            },
+            error => {
+              console.error('There was an error!', error);
+            }
+          );
+        } else {
+          console.log("Error: the format of the txt file is not correct.")
+        }
+      }
+      fileReader.onerror = (error) => {
+        console.log(error);
+      }
+    }
   }
 
 }
