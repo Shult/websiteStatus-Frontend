@@ -1,0 +1,20 @@
+.website-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+.website-info {
+  flex: 1;
+}
+
+.website-screenshot {
+  flex: 1;
+}
+
+.website-screenshot img {
+  max-width: 50%;
+  height: auto;
+}
