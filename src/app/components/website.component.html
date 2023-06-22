@@ -1,6 +1,7 @@
 <div class="upload-section topnav" >
   <input class="active" type="file" (change)="onFileSelected($event)">
   <button class="button-green" id="bt_check" (click)="onSubmit()">Check websites</button>
+  <button class="button-blue" (click)="downloadLogs()">Download logs</button>
   <button class="button-blue" id="bt_pdf" (click)="onClickPrint()">Print to PDF</button>
   <app-help-button></app-help-button>
 </div>

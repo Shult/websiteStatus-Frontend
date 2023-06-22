@@ -8,6 +8,7 @@ import { WebsiteService } from '../services/website.service';
 })
 export class WebsiteComponent implements OnInit {
   websites: any[] = []; // Un tableau pour stocker les sites web
+  logs : any = "";
 
   fileToUpload: File | null = null;
 
@@ -36,6 +37,7 @@ export class WebsiteComponent implements OnInit {
           this.websiteService.checkWebsites(urls).subscribe(
             websites => {
               this.websites = websites.results;
+              this.logs = websites.logs;
             },
             error => {
               console.error('There was an error!', error);
@@ -49,6 +51,13 @@ export class WebsiteComponent implements OnInit {
         console.log(error);
       }
     }
+  }
+
+  downloadLogs() {
+    console.log("logs name: "+this.logs);
+    const logsFileName = this.logs; // Remplacez "logsFileName" par la variable réelle contenant le nom du fichier des journaux
+    const fileUrl = `http://localhost:3000/api/download/${logsFileName}`; // Remplacez l'URL par votre URL d'API pour le téléchargement des journaux
+    window.open(fileUrl, '_blank');
   }
 
   onClickPrint() {
