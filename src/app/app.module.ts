@@ -6,11 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WebsiteComponent } from './components/website.component';
 import { WebsiteService } from './services/website.service';
+import {HelpButtonComponent} from "./help-button/help-button.component";
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    WebsiteComponent
+    WebsiteComponent,
+    HelpButtonComponent
   ],
   imports: [
     BrowserModule,

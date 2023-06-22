@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Website } from './website';
+import { ApiResponse } from './website';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,8 @@ import { Website } from './website';
 export class WebsiteService {
   constructor(private http: HttpClient) { }
 
-  checkWebsites(urls: string[]): Observable<Website[]> {
+  //checkWebsites(urls: string[]): Observable<Website[]> {
+  checkWebsites(urls: string[]): Observable<ApiResponse> {
     let validURL: any[] = [];  // Initialize array
 
     let urlPattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
@@ -34,6 +37,7 @@ export class WebsiteService {
     let jsonObject = { "urls": validURL };
     console.log(jsonObject);
 
-    return this.http.post<Website[]>('http://localhost:3000/api/checkStatus', jsonObject);
+    //return this.http.post<Website[]>('http://localhost:3000/api/checkStatus', jsonObject);
+    return this.http.post<ApiResponse>('http://localhost:3000/api/checkStatus', jsonObject);
   }
 }
