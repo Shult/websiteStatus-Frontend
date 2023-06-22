@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsiteService } from '../services/website.service';
-import { jsPDF } from 'jspdf';
-import { HelpButtonComponent } from '../help-button/help-button.component';
 
 @Component({
   selector: 'app-website',
