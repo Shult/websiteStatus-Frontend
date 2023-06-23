@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { WebsiteComponent } from './components/website.component';
 import { WebsiteService } from './services/website.service';
 import {HelpButtonComponent} from "./help-button/help-button.component";
+import { CompareLogsComponent } from './compare-logs/compare-logs.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     WebsiteComponent,
-    HelpButtonComponent
+    HelpButtonComponent,
+    CompareLogsComponent,
   ],
   imports: [
     BrowserModule,
