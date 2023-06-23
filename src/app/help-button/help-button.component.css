@@ -9,6 +9,17 @@
   cursor: pointer;
 }
 
+.help-button:hover {
+  background-color: #ffd700; /* Couleur de fond jaune doré au survol */
+  /* Autres styles souhaités pour le survol */
+}
+
+.help-button:active,
+.button:focus {
+  background-color: #ffd700; /* Couleur de fond jaune doré au clic */
+  /* Autres styles souhaités pour le clic */
+}
+
 .help-tooltip {
   position: absolute;
   top: 10%;

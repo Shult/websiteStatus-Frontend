@@ -9,7 +9,7 @@ import { WebsiteService } from '../services/website.service';
 export class WebsiteComponent implements OnInit {
   websites: any[] = []; // Un tableau pour stocker les sites web
   logs : any = "";
-
+  isVerificationComplete: boolean = false;
   fileToUpload: File | null = null;
 
   constructor(private websiteService: WebsiteService) { }
@@ -38,6 +38,7 @@ export class WebsiteComponent implements OnInit {
             websites => {
               this.websites = websites.results;
               this.logs = websites.logs;
+              this.isVerificationComplete = true; // Mise à jour de la variable isVerificationComplete
             },
             error => {
               console.error('There was an error!', error);
@@ -64,8 +65,12 @@ export class WebsiteComponent implements OnInit {
     window.print();
   }
 
-  onClickHelp() {
-    window.open('ressources/help_to_print_pdf.pdf', '_blank');
+  getButtonClass(): string {
+    return this.isVerificationComplete ? 'enabled' : 'disabled';
+  }
+
+  handleImageError(website: any) {
+    website.screen += '?' + new Date().getTime(); // Ajoutez un paramètre de requête unique pour forcer le rafraîchissement de l'image
   }
 
 }

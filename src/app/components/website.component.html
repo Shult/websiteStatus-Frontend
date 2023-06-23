@@ -1,8 +1,8 @@
 <div class="upload-section topnav" >
   <input class="active" type="file" (change)="onFileSelected($event)">
   <button class="button-green" id="bt_check" (click)="onSubmit()">Check websites</button>
-  <button class="button-blue" (click)="downloadLogs()">Download logs</button>
-  <button class="button-blue" id="bt_pdf" (click)="onClickPrint()">Print to PDF</button>
+  <button class="button-blue" [class]="getButtonClass()" (click)="downloadLogs()" [disabled]="!isVerificationComplete">Download logs</button>
+  <button class="button-blue" [class]="getButtonClass()" id="bt_pdf" (click)="onClickPrint()" [disabled]="!isVerificationComplete">Print to PDF</button>
   <app-help-button></app-help-button>
 </div>
 
@@ -20,7 +20,10 @@
 <!-- <div class="website-container" *ngFor="let website of websites"> -->
 <div *ngFor="let website of websites" class="website-container grid-container" [class.up]="website.status === 'up'" [class.down]="website.status === 'down'">
   <div class="website-screenshot">
-    <img [src]="'http://localhost:3000/' + website.screen" alt="Screenshot">
+    <ng-container *ngIf="website.status === 'up'">
+      <img [src]="'http://localhost:3000/' + website.screen" alt="Screenshot" >
+<!--      (error)="handleImageError(website)"-->
+    </ng-container>
   </div>
   <div class="grid-container-4">
     <div class="website-info grid-container-vertical">

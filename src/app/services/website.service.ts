@@ -22,10 +22,10 @@ export class WebsiteService {
       '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
     urls.forEach(url => {
-      console.log(url);
+      //console.log(url);
       url = url.trim();  // Removes blank spaces and carriage return characters
       if(urlPattern.test(url)) {
-        console.log(url + " is a correct URL");
+        //console.log(url + " is a correct URL");
         validURL.push(url);  // Add URL to array if valid
       } else {
         console.log(url + " is not a correct URL");
@@ -35,7 +35,6 @@ export class WebsiteService {
     let jsonObject = { "urls": validURL };
     console.log(jsonObject);
 
-    //return this.http.post<Website[]>('http://localhost:3000/api/checkStatus', jsonObject);
     return this.http.post<ApiResponse>('http://localhost:3000/api/checkStatus', jsonObject);
   }
 }

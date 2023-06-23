@@ -126,6 +126,18 @@
   background-color: #888;
 }
 
+.enabled {
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
+  background-color: #888888;
+}
+
+.disabled:hover {
+  background-color: #f2f2f2;
+}
 
 button {
   color: white; /* Text color */
@@ -140,3 +152,5 @@ button {
 button:hover {
   background-color: #45a049; /* Hover background color */
 }
+
+

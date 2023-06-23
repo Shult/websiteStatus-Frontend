@@ -3,6 +3,7 @@ export interface Website {
     status: string;
     responseTime: number;
     screen: string
+    retryCount: number;
 }
 
 export interface ApiResponse {
