@@ -11,6 +11,8 @@ export class WebsiteComponent implements OnInit {
   logs : any = "";
   isVerificationComplete: boolean = false;
   fileToUpload: File | null = null;
+  upFilter: boolean = true; // Propriété pour filtrer les sites "UP"
+  downFilter: boolean = true; // Propriété pour filtrer les sites "DOWN"
 
   constructor(private websiteService: WebsiteService) { }
 
@@ -71,6 +73,18 @@ export class WebsiteComponent implements OnInit {
 
   handleImageError(website: any) {
     website.screen += '?' + new Date().getTime(); // Ajoutez un paramètre de requête unique pour forcer le rafraîchissement de l'image
+  }
+
+  toggleFilter(filter: string, event: Event) {
+    console.log("toogleFilter");
+    const checked = (event.target as HTMLInputElement).checked;
+    if (filter === 'up') {
+      console.log("up");
+      this.upFilter = checked;
+    } else if (filter === 'down') {
+      console.log("down");
+      this.downFilter = checked;
+    }
   }
 
 }

@@ -6,25 +6,22 @@
   <app-help-button></app-help-button>
 </div>
 
-<!--<div class="website-container up grid-container">-->
-<!--  <div class="website-screenshot">-->
-<!--    <img [src]= "'http://localhost:3000/screenshots/http___twitch.tv.png'" alt="Screenshot">-->
-<!--  </div>-->
-<!--  <div class="website-info grid-container-vertical">-->
-<!--    <h2>twitch.tv</h2>-->
-<!--    <p><strong>Status:</strong> UP</p>-->
-<!--    <p><strong>Response time:</strong> 2s</p>-->
-<!--  </div>-->
-<!--</div>-->
+<div id="filter-buttons">
+  <label>
+    <input id="up" type="checkbox" value="up" (change)="toggleFilter('up', $event)" checked> UP
+  </label>
+  <label>
+    <input id="down" type="checkbox" value="down" (change)="toggleFilter('down', $event)" checked> DOWN
+  </label>
+</div>
 
-<!-- <div class="website-container" *ngFor="let website of websites"> -->
-<div *ngFor="let website of websites" class="website-container grid-container" [class.up]="website.status === 'up'" [class.down]="website.status === 'down'">
+<div *ngFor="let website of websites" class="website-container grid-container hideUp" [class.up]="website.status === 'up' && upFilter" [class.down]="website.status === 'down' && downFilter" [class.hidden]="!(website.status === 'up' && upFilter) && !(website.status === 'down' && downFilter)">
   <div class="website-screenshot">
     <ng-container *ngIf="website.status === 'up'">
       <img [src]="'http://localhost:3000/' + website.screen" alt="Screenshot" >
-<!--      (error)="handleImageError(website)"-->
     </ng-container>
   </div>
+
   <div class="grid-container-4">
     <div class="website-info grid-container-vertical">
       <p><strong>URL:</strong> {{ website.url }}</p>
@@ -37,3 +34,6 @@
     </div>
   </div>
 </div>
+
+
+<script src="src/app/js/filters.js"></script>

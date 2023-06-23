@@ -40,6 +40,7 @@
   background-color: rgb(255,105,97);
 }
 
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Spécifiez le nombre de colonnes souhaité et leur largeur */
@@ -153,4 +154,6 @@ button:hover {
   background-color: #45a049; /* Hover background color */
 }
 
-
+.hidden {
+  display: none;
+}
