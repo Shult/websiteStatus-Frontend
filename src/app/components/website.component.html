@@ -6,6 +6,7 @@
   <app-help-button></app-help-button>
 </div>
 
+
 <div id="filter-buttons">
   <label>
     <input id="up" type="checkbox" value="up" (change)="toggleFilter('up', $event)" checked> UP
@@ -24,7 +25,7 @@
 
   <div class="grid-container-4">
     <div class="website-info grid-container-vertical">
-      <p><strong>URL:</strong> {{ website.url }}</p>
+      <p><strong>URL:</strong>  <a target="_blank" href="{{ website.url }}">{{ website.url }}</a></p>
       <p><strong>Response time:</strong> {{ website.responseTime }}s</p>
       <p><strong>ID:</strong> {{ website.id }}</p>
       <p><strong>SSL added:</strong> {{ website.addssl }}</p>

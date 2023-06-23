@@ -1,27 +1,43 @@
-# WebSiteStatusFrontend
+# WebsiteStatus
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+## Frontend
 
-## Development server
+### Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Make sure you have Node.js installed on your machine.
+2. Clone the frontend repository using the following command:
 
-## Code scaffolding
+```bash
+git clone https://github.com/Shult/websiteStatus-Frontend.git
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. Navigate to the frontend directory:
+```bash
+cd websiteStatus-Frontend
+```
 
-## Build
+4. Install the dependencies:
+```bash
+npm install
+```
+### Configuration
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Open the src/environments/environment.ts file.
+2. Set the apiUrl property to http://localhost:3000 to match your backend server URL.
 
-## Running unit tests
+### Usage
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To start the frontend application, run the following command:
+```bash
+ng serve
+```
 
-## Running end-to-end tests
+The application will be accessible at http://localhost:4200 in your browser.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Deployment
+To deploy the frontend application, run the following command:
+```bash
+ng build --prod
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This will generate a production-ready version of the application in the dist directory. You can then host these files on a web server of your choice.
