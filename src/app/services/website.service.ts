@@ -9,7 +9,6 @@ import { ApiResponse } from './website';
 export class WebsiteService {
   constructor(private http: HttpClient) { }
 
-  //checkWebsites(urls: string[]): Observable<Website[]> {
   checkWebsites(urls: string[]): Observable<ApiResponse> {
     let validURL: any[] = [];  // Initialize array
 

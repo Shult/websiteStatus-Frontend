@@ -16,12 +16,12 @@
   </label>
 </div>
 
-<a class="hidden" href="http://localhost:4200/logs-compare">Compare logs (Precheck and Postcheck) (In construction)</a>
+<a class="" href="http://localhost:4200/logs-compare">Compare logs (Precheck and Postcheck) (In construction)</a>
 
 <div *ngFor="let website of websites" class="website-container grid-container hideUp" [class.up]="website.status === 'up' && upFilter" [class.down]="website.status === 'down' && downFilter" [class.hidden]="!(website.status === 'up' && upFilter) && !(website.status === 'down' && downFilter)">
   <div class="website-screenshot">
     <ng-container *ngIf="website.status === 'up'">
-      <img [src]="'http://localhost:3000/' + website.screen" alt="Screenshot" >
+      <img [src]="'http://localhost:3000/' + website.screen" alt="Screenshot" (error)="handleImageError(website)">
     </ng-container>
   </div>
 
