@@ -16,6 +16,10 @@
   </label>
 </div>
 
+<div>
+  <p><b style="color: red;">WARNING:</b> If a website is unavailable, you may need to check again. Sometimes they detect that a robot has done the searching, and block it.</p>
+</div>
+
 <a class="" href="http://localhost:4200/logs-compare">Compare logs (Precheck and Postcheck) (In construction)</a>
 
 <div *ngFor="let website of websites" class="website-container grid-container hideUp" [class.up]="website.status === 'up' && upFilter" [class.down]="website.status === 'down' && downFilter" [class.hidden]="!(website.status === 'up' && upFilter) && !(website.status === 'down' && downFilter)">
@@ -24,6 +28,7 @@
       <img [src]="'http://localhost:3000/' + website.screen" alt="Screenshot" (error)="handleImageError(website)">
     </ng-container>
   </div>
+
 
   <div class="grid-container-4">
     <div class="website-info grid-container-vertical">

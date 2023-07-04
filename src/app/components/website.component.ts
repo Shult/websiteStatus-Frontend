@@ -7,12 +7,13 @@ import { WebsiteService } from '../services/website.service';
   styleUrls: ['./website.component.css']
 })
 export class WebsiteComponent implements OnInit {
-  websites: any[] = []; // Un tableau pour stocker les sites web
+  websites: any[] = []; // A table for storing websites
   logs : any = "";
   isVerificationComplete: boolean = false;
   fileToUpload: File | null = null;
-  upFilter: boolean = true; // Propriété pour filtrer les sites "UP"
-  downFilter: boolean = true; // Propriété pour filtrer les sites "DOWN"
+  upFilter: boolean = true; // Property to filter "UP" sites
+  downFilter: boolean = true; // Property to filter "DOWN" sites
+  maxNumberErrorAttempts = 0 ;
 
   constructor(private websiteService: WebsiteService) { }
 
@@ -33,7 +34,6 @@ export class WebsiteComponent implements OnInit {
     if (this.fileToUpload) {
       fileReader.readAsText(this.fileToUpload, "UTF-8");
       fileReader.onload = async () => {
-        //console.log(fileReader.result);
         if(fileReader.result){
           const urls = (fileReader.result as string).split('\n');
           this.websiteService.checkWebsites(urls).subscribe(
@@ -58,8 +58,8 @@ export class WebsiteComponent implements OnInit {
 
   downloadLogs() {
     console.log("logs name: "+this.logs);
-    const logsFileName = this.logs; // Remplacez "logsFileName" par la variable réelle contenant le nom du fichier des journaux
-    const fileUrl = `http://localhost:3000/api/download/${logsFileName}`; // Remplacez l'URL par votre URL d'API pour le téléchargement des journaux
+    const logsFileName = this.logs;
+    const fileUrl = `http://localhost:3000/api/download/${logsFileName}`;
     window.open(fileUrl, '_blank');
   }
 
@@ -72,7 +72,11 @@ export class WebsiteComponent implements OnInit {
   }
 
   handleImageError(website: any) {
-    website.screen += '?' + new Date().getTime(); // Ajoutez un paramètre de requête unique pour forcer le rafraîchissement de l'image
+    //if(this.maxNumberErrorAttempts>10){
+      website.screen += '?' + new Date().getTime(); // Add a single request parameter to force image refresh
+      console.log("ADD HANGLE IMAGE ERROR: "+this.maxNumberErrorAttempts);
+      //this.maxNumberErrorAttempts++;
+    //}
   }
 
   toggleFilter(filter: string, event: Event) {
