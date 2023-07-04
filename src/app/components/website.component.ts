@@ -63,6 +63,13 @@ export class WebsiteComponent implements OnInit {
     window.open(fileUrl, '_blank');
   }
 
+  downloadExcel() {
+    console.log("Excel");
+    const excelFileName = "exemple";
+    const fileUrl = `http://localhost:3000/api/download/excel/${excelFileName}`;
+    window.open(fileUrl, '_blank');
+  }
+
   onClickPrint() {
     window.print();
   }

@@ -2,6 +2,7 @@
   <input class="active" type="file" (change)="onFileSelected($event)">
   <button class="button-green" id="bt_check" (click)="onSubmit()">Check websites</button>
   <button class="button-blue" [class]="getButtonClass()" (click)="downloadLogs()" [disabled]="!isVerificationComplete">Download logs</button>
+  <button class="button-blue" [class]="getButtonClass()" (click)="downloadExcel()" [disabled]="!isVerificationComplete">Download excel file</button>
   <button class="button-blue" [class]="getButtonClass()" id="bt_pdf" (click)="onClickPrint()" [disabled]="!isVerificationComplete">Print to PDF</button>
   <app-help-button></app-help-button>
 </div>
