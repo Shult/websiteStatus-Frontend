@@ -11,7 +11,7 @@ import { CompareLogsComponent } from './compare-logs/compare-logs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 
 
