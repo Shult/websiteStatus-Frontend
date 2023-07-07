@@ -1,0 +1,3 @@
+export const API_URL = 'http://localhost:3000';
+
+// export const API_URL = 'http://webcheck.hostingmalaysia.net:3001';

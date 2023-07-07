@@ -1,32 +1,40 @@
-<div class="upload-section topnav" >
-  <input class="active" type="file" (change)="onFileSelected($event)">
-  <button class="button-green" id="bt_check" (click)="onSubmit()">Check websites</button>
-  <button class="button-blue" [class]="getButtonClass()" (click)="downloadLogs()" [disabled]="!isVerificationComplete">Download logs</button>
-  <button class="button-blue" [class]="getButtonClass()" (click)="downloadExcel()" [disabled]="!isVerificationComplete">Download excel file</button>
-  <button class="button-blue" [class]="getButtonClass()" id="bt_pdf" (click)="onClickPrint()" [disabled]="!isVerificationComplete">Print to PDF</button>
-  <app-help-button></app-help-button>
+<div class="dashboard-container">
+  <div class="dashboard">
+    <div class="upload-section topnav" >
+      <input class="active" type="file" (change)="onFileSelected($event)">
+      <button class="button-green" id="bt_check" (click)="onSubmit()">Check websites</button>
+      <button class="button-blue" [class]="getButtonClass()" (click)="downloadLogs()" [disabled]="!isVerificationComplete">Download logs</button>
+      <button class="button-blue" [class]="getButtonClass()" (click)="downloadExcel()" [disabled]="!isVerificationComplete">Download excel file</button>
+      <button class="button-blue" [class]="getButtonClass()" id="bt_pdf" (click)="onClickPrint()" [disabled]="!isVerificationComplete">Print to PDF</button>
+
+      <app-help-button></app-help-button>
+    </div>
+
+
+    <div id="filter-buttons">
+      <label>
+        <input id="up" type="checkbox" value="up" (change)="toggleFilter('up', $event)" checked> UP
+      </label>
+      <label>
+        <input id="down" type="checkbox" value="down" (change)="toggleFilter('down', $event)" checked> DOWN
+      </label>
+    </div>
+
+<!--    <a routerLink="/logs-compare"><button class="button-blue">Compare logs (Precheck and Postcheck)</button></a>-->
+      <a href="http://localhost:4200/logs-compare"><button class="button-blue">Compare logs (Precheck and Postcheck)</button></a>
+    <a href="https://docs.google.com/document/d/19TijgrMJNwuU0hzq4NBGvJzeK7whg42fk0d6NnKUiDk/edit?usp=sharing"><button class="button-blue">How it works ?</button></a>
+
+    <div>
+      <p><b style="color: red;">WARNING:</b> If a website is unavailable, you may need to check again. Sometimes they detect that a robot has done the searching, and block it.</p>
+    </div>
+  </div>
 </div>
-
-
-<div id="filter-buttons">
-  <label>
-    <input id="up" type="checkbox" value="up" (change)="toggleFilter('up', $event)" checked> UP
-  </label>
-  <label>
-    <input id="down" type="checkbox" value="down" (change)="toggleFilter('down', $event)" checked> DOWN
-  </label>
-</div>
-
-<div>
-  <p><b style="color: red;">WARNING:</b> If a website is unavailable, you may need to check again. Sometimes they detect that a robot has done the searching, and block it.</p>
-</div>
-
-<a class="" href="http://localhost:4200/logs-compare">Compare logs (Precheck and Postcheck) (In construction)</a>
 
 <div *ngFor="let website of websites" class="website-container grid-container hideUp" [class.up]="website.status === 'up' && upFilter" [class.down]="website.status === 'down' && downFilter" [class.hidden]="!(website.status === 'up' && upFilter) && !(website.status === 'down' && downFilter)">
   <div class="website-screenshot">
     <ng-container *ngIf="website.status === 'up'">
       <img [src]="'http://localhost:3000/' + website.screen" alt="Screenshot" (error)="handleImageError(website)">
+<!--      <img [src]="'http://webcheck.hostingmalaysia.net/' + website.screen" alt="Screenshot">-->
     </ng-container>
   </div>
 

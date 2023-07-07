@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routes } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { WebsiteComponent } from './components/website.component';
 import { WebsiteService } from './services/website.service';
 import {HelpButtonComponent} from "./help-button/help-button.component";
 import { CompareLogsComponent } from './compare-logs/compare-logs.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+
+import { RouterModule, Routes } from '@angular/router';
+
+
 
 
 @NgModule({
@@ -20,7 +26,10 @@ import { CompareLogsComponent } from './compare-logs/compare-logs.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [WebsiteService],
   bootstrap: [AppComponent]

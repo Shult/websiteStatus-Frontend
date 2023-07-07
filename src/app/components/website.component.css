@@ -158,3 +158,28 @@ button:hover {
   display: none;
 }
 
+@media screen and (max-width: 830px) {
+  /* Your CSS styles for smartphone go here */
+  .website-container {
+    display: inline-block;
+    flex-direction: row;
+    border: 1px solid #000;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    padding: 0;
+    margin: 1%;
+    text-align: center;
+  }
+}
+
+.dashboard{
+  margin: 1%;
+}
+
+.dashboard-container{
+  padding: 1%;
+  border-top: 0;
+}

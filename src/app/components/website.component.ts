@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsiteService } from '../services/website.service';
+import { API_URL } from '../constants'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-website',
@@ -14,10 +16,17 @@ export class WebsiteComponent implements OnInit {
   upFilter: boolean = true; // Property to filter "UP" sites
   downFilter: boolean = true; // Property to filter "DOWN" sites
   maxNumberErrorAttempts = 0 ;
+  // @ts-ignore
+  apiUrl: API_URL;
 
-  constructor(private websiteService: WebsiteService) { }
+  constructor(private websiteService: WebsiteService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  // Méthode pour naviguer vers la page "logs-compare"
+  navigateToLogsCompare() {
+    this.router.navigate(['/logs-compare']);
   }
 
   onFileSelected(event: Event) {
@@ -60,6 +69,7 @@ export class WebsiteComponent implements OnInit {
     console.log("logs name: "+this.logs);
     const logsFileName = this.logs;
     const fileUrl = `http://localhost:3000/api/download/${logsFileName}`;
+    // const fileUrl = API_URL+`/api/download/${logsFileName}`;
     window.open(fileUrl, '_blank');
   }
 
@@ -67,6 +77,7 @@ export class WebsiteComponent implements OnInit {
     console.log("Excel");
     const excelFileName = "exemple";
     const fileUrl = `http://localhost:3000/api/download/excel/${excelFileName}`;
+    // const fileUrl = API_URL+`/api/download/excel/${excelFileName}`;
     window.open(fileUrl, '_blank');
   }
 
@@ -79,11 +90,14 @@ export class WebsiteComponent implements OnInit {
   }
 
   handleImageError(website: any) {
-    //if(this.maxNumberErrorAttempts>10){
+    if(this.maxNumberErrorAttempts<=200){
       website.screen += '?' + new Date().getTime(); // Add a single request parameter to force image refresh
       console.log("ADD HANGLE IMAGE ERROR: "+this.maxNumberErrorAttempts);
-      //this.maxNumberErrorAttempts++;
-    //}
+      this.maxNumberErrorAttempts++;
+    } else {
+      console.log("Cannot load this image "+ website.screen +", to many attempts.");
+      this.maxNumberErrorAttempts=0;
+    }
   }
 
   toggleFilter(filter: string, event: Event) {
@@ -96,6 +110,10 @@ export class WebsiteComponent implements OnInit {
       console.log("down");
       this.downFilter = checked;
     }
+  }
+
+  openPdf() {
+    window.open('howItWorks.pdf', '_blank');
   }
 
 }

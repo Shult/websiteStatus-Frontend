@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResponse } from './website';
+import { API_URL } from 'src/app/constants'
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,7 @@ export class WebsiteService {
     let jsonObject = { "urls": validURL };
     console.log(jsonObject);
 
-    return this.http.post<ApiResponse>('http://localhost:3000/api/checkStatus', jsonObject);
+    //return this.http.post<ApiResponse>('http://localhost:3000/api/checkStatus', jsonObject);
+    return this.http.post<ApiResponse>(API_URL+'/api/checkStatus', jsonObject);
   }
 }
