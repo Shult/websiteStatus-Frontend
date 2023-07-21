@@ -183,3 +183,35 @@ button:hover {
   padding: 1%;
   border-top: 0;
 }
+
+.text {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: bold;
+}
+
+.statsText{
+  position: absolute;
+}
+
+.stats{
+  background-color: lightblue;
+  border-radius: 2px;
+  width: 25%;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 20%;
+  margin-left: 2%
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}

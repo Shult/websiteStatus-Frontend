@@ -19,9 +19,7 @@
         <input id="down" type="checkbox" value="down" (change)="toggleFilter('down', $event)" checked> DOWN
       </label>
     </div>
-
-<!--    <a routerLink="/logs-compare"><button class="button-blue">Compare logs (Precheck and Postcheck)</button></a>-->
-      <a href="http://localhost:4200/logs-compare"><button class="button-blue">Compare logs (Precheck and Postcheck)</button></a>
+    <a href="http://localhost:4200/logs-compare"><button class="button-blue">Compare logs (Precheck and Postcheck)</button></a>
     <a href="https://docs.google.com/document/d/19TijgrMJNwuU0hzq4NBGvJzeK7whg42fk0d6NnKUiDk/edit?usp=sharing"><button class="button-blue">How it works ?</button></a>
 
     <div>
@@ -30,11 +28,33 @@
   </div>
 </div>
 
+<table>
+  <tr>
+    <th>Websites</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Total:</td>
+    <td>{{ nbTotalSites }}</td>
+  </tr>
+  <tr>
+    <td>Up:</td>
+    <td>{{ nbUpSites }}</td>
+  </tr>
+  <tr>
+    <td>Down:</td>
+    <td>{{ nbTotalSites-nbUpSites }}</td>
+  </tr>
+  <tr>
+    <td>Ratio:</td>
+    <td>{{ nbUpSites/nbTotalSites*100 }} %</td>
+  </tr>
+</table>
+
 <div *ngFor="let website of websites" class="website-container grid-container hideUp" [class.up]="website.status === 'up' && upFilter" [class.down]="website.status === 'down' && downFilter" [class.hidden]="!(website.status === 'up' && upFilter) && !(website.status === 'down' && downFilter)">
   <div class="website-screenshot">
     <ng-container *ngIf="website.status === 'up'">
       <img [src]="'http://localhost:3000/' + website.screen" alt="Screenshot" (error)="handleImageError(website)">
-<!--      <img [src]="'http://webcheck.hostingmalaysia.net/' + website.screen" alt="Screenshot">-->
     </ng-container>
   </div>
 
@@ -50,5 +70,6 @@
       <p class="centered-text"><strong>Status:</strong> {{ website.status }}</p>
     </div>
   </div>
+
 </div>
 
